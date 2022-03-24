@@ -7,7 +7,7 @@ def left(i):
 def right(i):
     return 2 * i + 2
 
-def heap_sort(vetor):
+def heapsort(vetor):
     build_max_heap(vetor)
     heap_size = len(vetor) - 1
     for i in range(len(vetor)-1, 0, -1):
@@ -47,4 +47,4 @@ vetor1 = [4,1,3,2,16,9,10,14,8,7]
 vetor2 = [4,1,3,2,16,9,10,14,8,7]
 
 print(build_max_heap(vetor1)) 
-print(heap_sort(vetor2))
+print(heapsort(vetor2))

@@ -1,19 +1,30 @@
-import sys,time
-from bubblesort import bubbleSort
+import main
+from insertionsort import insertionsort
+from bubblesort import bubblesort
+from quicksort import quicksort
+from mergesort import mergesort
+from heapsort import heapsort
+from gerar_numeros import gerar_numeros
 
-input_array=[]
-if (len(sys.argv) < 2):
-    print("")
-    print("Please input list items as arguments")
-    print("\nExample: ./bubblesort.py <item1> [item2] [item3] [item4] ...")
-    quit()
-i=1
-time1 = time.time()
-while (i < len(sys.argv)):
-    input_array.append(int(sys.argv[i]))
-    i+=1
+var_pior = 'pior'
+var_melhor = 'melhor'
+var_random = 'random'
 
-vetor = [8, 27, 9, 6, 16, 21, 5, 3, 26, 10, 15, 17, 29, 24, 14]
-#vetor = [19, 24, 23, 21, 28, 3, 30, 11]
-#print(mergesort(vetor, 0, len(vetor) - 1))
-print(bubbleSort(vetor))
+print('gerando numeros >')
+gerar_numeros(quantidade=500, maximo=500)
+
+lista = main.get_lista()
+listam, listap = main.get_melhor_pior_caso(lista)
+
+main.calcular_tempo_timeit(lista, var_random)
+main.calcular_tempo_timeit(listam, var_melhor)
+main.calcular_tempo_timeit(listap, var_pior)
+
+print('gerando os graficos > ')
+#gera os gráficos dos tempos
+main.get_valores_pro_grafico(var_random, len(lista))
+main.get_valores_pro_grafico(var_pior, len(lista))
+main.get_valores_pro_grafico(var_melhor, len(lista))
+
+# print(lista, listam, listap, sep="\n")
+# main.vendo_listas(lista, listam, listap)

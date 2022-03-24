@@ -1,10 +1,15 @@
-from algoritmos_sort import ShellSort, BubleSort, BucketSort
+from fileinput import close
 import os, timeit, time
 import matplotlib.pyplot as plt
+from insertionsort import insertionsort
+from bubblesort import bubblesort
+from quicksort import quicksort
+from mergesort import mergesort
+from heapsort import heapsort
 
 def get_lista():
     lista_int = []
-    file = open(os.getcwd()+'/a_numeros.txt', 'r')
+    file = open(os.getcwd()+'/numeros.txt', 'r')
     lista = file.read()
     file.close()
 
@@ -38,68 +43,105 @@ def vendo_listas(lista_int,lista_m, lista_p):
     print('lista no melhor caso = ', lista_m, ' tam = ', len(lista_m))
     print('lista no pior caso = ', lista_p, ' tam = ', len(lista_p))
 
-def calcular_tempo_timeit(lista, tipo):
+def calcular_tempo_timeit(lista, caso):
     '''calcular tempo de execucao'''
 
     operacao = 'w'
 
-    name_file = os.getcwd()+'/'+tipo + '.txt'
+    name_file = os.getcwd()+'/' + "temposTimeit" + caso + str(len(lista)) +'.txt'
+    name_file1 = os.getcwd()+'/' + "temposApenasNum" + caso + str(len(lista)) +'.txt'
     arquivo = open(name_file, operacao)
+    arquivo1 = open(name_file1, operacao)
 
-    #calculando o ShellSort()
-    print('calculando shell em caso ', tipo)
-    tempo_ShellSort = timeit.timeit("ShellSort({})".format(lista), setup="from __main__ import ShellSort", number=1)
-    arquivo.write(str(float(tempo_ShellSort))+'\n')
-    print('shell done.')
+    #calculando o InsertionSort()
+    print('calculando insertionsort em caso ', caso)
+    tempo_insertionSort = timeit.timeit("insertionsort({})".format(lista), setup="from __main__ import insertionsort", number=1)
+    arquivo.write("InsertionSort " + caso + " :"  + str(float(tempo_insertionSort))+'\n')
+    arquivo1.write(str(float(tempo_insertionSort))+'\n')
+    print('insertion done.')
 
-    print('calculando buble em caso ', tipo)
-    # calculando o BubleSort()
-    tempo_BubleSort = timeit.timeit("BubleSort({})".format(lista), setup="from __main__ import BubleSort", number=1)
-    arquivo.write(str(float(tempo_BubleSort))+'\n')
-    print('buble done.')
+    print('calculando bubble em caso ', caso)
+    # calculando o BubbleSort()
+    tempo_BubbleSort = timeit.timeit("bubblesort({})".format(lista), setup="from __main__ import bubblesort", number=1)
+    arquivo.write("BubbleSort: " + caso + " :"  + str(float(tempo_BubbleSort))+'\n')
+    arquivo1.write(str(float(tempo_BubbleSort))+'\n')
+    print('bubble done.')
 
-    # calculando o BucketSort
-    print('calculando bucket em caso ', tipo)
-    tempo_BucketSort = timeit.timeit("BucketSort({})".format(lista), setup="from __main__ import BucketSort", number=1)
-    arquivo.write(str(float(tempo_BucketSort))+'\n')
-    print('bucket done.')
+    # calculando o HeapSort()
+    print('calculando heap em caso ', caso)
+    tempo_HeapSort = timeit.timeit("heapsort({})".format(lista), setup="from __main__ import heapsort", number=1)
+    arquivo.write("HeapSort: " + caso + " :"  + str(float(tempo_HeapSort))+'\n')
+    arquivo1.write(str(float(tempo_HeapSort))+'\n')
+    print('heap done.')
 
-def calcular_tempo_fim_menos_inicio(lista, tipo):
+    # calculando o QuickSort()
+    print('calculando quick em caso ', caso)
+    tempo_QuickSort = timeit.timeit("quicksort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import quicksort", number=1)
+    arquivo.write("QuickSort: " + caso + " :"  + str(float(tempo_QuickSort))+'\n')
+    arquivo1.write(str(float(tempo_QuickSort))+'\n')
+    print('quick done.')
+
+    # calculando o MergeSort()
+    print('calculando merge em caso ', caso)
+    tempo_MergeSort = timeit.timeit("mergesort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import mergesort", number=1)
+    arquivo.write("MergeSort " + caso + " :" + str(float(tempo_MergeSort))+'\n')
+    arquivo1.write(str(float(tempo_MergeSort))+'\n')
+    print('merge done.')
+
+    arquivo.close()
+    arquivo1.close()
+
+def calcular_tempo_fim_menos_inicio(lista):
     '''calcular tempo de execucao'''
 
     operacao = 'w'
 
-    name_file = os.getcwd()+'/'+tipo + '.txt'
+    name_file = os.getcwd()+'/'+ "tempoFim-Inicio" + str(len(lista)) + '.txt'
     arquivo = open(name_file, operacao)
 
-    #calculando o ShellSort()
+    #calculando o InsertionSort()
     inicio = time.time()
-    ShellSort(lista)
+    insertionsort(lista)
     fim = time.time()
-    tempo_ShellSort = fim-inicio
-    arquivo.write(str(float(tempo_ShellSort))+'\n')
+    tempo_insertionSort = fim-inicio
+    arquivo.write("InsertionSort" + str(float(tempo_insertionSort))+'\n')
 
     # calculando o BubleSort()
     inicio = time.time()
-    BubleSort(lista)
+    bubblesort(lista)
     fim = time.time()
-    tempo_BubleSort = fim - inicio
-    arquivo.write(str(float(tempo_BubleSort))+'\n')
+    tempo_BubbleSort = fim - inicio
+    arquivo.write("BubbleSort" + str(float(tempo_BubbleSort))+'\n')
 
-    # calculando o BucketSort()
+    # calculando o HeapSort()
     inicio = time.time()
-    BucketSort(lista)
+    heapsort(lista)
     fim = time.time()
-    tempo_BucketSort = fim - inicio
-    arquivo.write(str(float(tempo_BucketSort))+'\n')
+    tempo_heapSort = fim - inicio
+    arquivo.write("HeapSort" + str(float(tempo_heapSort))+'\n')
 
-def gerar_grafico(shell, buble, bucket, tipo):
+    # calculando o QuickSort()
+    inicio = time.time()
+    quicksort(lista, 0, len(lista) - 1)
+    fim = time.time()
+    tempo_quickSort = fim - inicio
+    arquivo.write("QuickSort" + str(float(tempo_quickSort))+'\n')
+
+    # calculando o MergeSort()
+    inicio = time.time()
+    mergesort(lista, 0, len(lista) - 1)
+    fim = time.time()
+    tempo_mergeSort = fim - inicio
+    arquivo.write("MergeSort" + str(float(tempo_mergeSort))+'\n')
+    arquivo.close()
+
+def gerar_grafico(insertion, buble, quick, tipo):
     ''''''
-    y_axis = [shell, buble, bucket]
+    y_axis = [insertion, buble, quick]
     x_axis = range(len(y_axis))
     width_n = 0.4
     bar_color = 'green'
-    algortirmos = ['shell', 'buble', 'bucket']
+    algortirmos = ['insertion', 'buble', 'quick']
 
     plt.bar(x_axis, y_axis, width=width_n, color=bar_color, align='center')
     plt.ylabel('Tempo')
@@ -112,91 +154,46 @@ def gerar_grafico(shell, buble, bucket, tipo):
     print('figura ', tipo, '.png salva!')
     plt.show()
 
-def get_valores_pro_grafico(tipo):
+def get_valores_pro_grafico(tipo, tam):
     ''''''
-    arquivo = open(os.getcwd()+'/'+str(tipo)+'.txt', 'r')
+    arquivo = open(os.getcwd()+'/temposApenasNum'+str(tipo)+str(tam)+'.txt', 'r')
     valores = arquivo.read()
     print(valores)
     arquivo.close()
-    shell = 0
-    buble = 0
-    bucket = 0
+    insertion = 0
+    bubble = 0
+    quick = 0
+    #heap = 0
+    #merge = 0
     tmp = ''
     v1 = True
     v2 = False
     v3 = False
+    v4 = False
+    v5 = False
     for i in range(len(valores)):
 
         if valores[i] == '\n':
-            if shell == 0 and v1:
-                shell = tmp
+            if insertion == 0 and v1:
+                insertion = tmp
                 tmp = ''
                 v1 = False
                 v2 = True
-            elif buble == 0 and v2:
-                buble = tmp
+            elif bubble == 0 and v2:
+                bubble = tmp
                 tmp = ''
                 v2 = False
                 v3 = True
-            elif bucket == 0 and v3:
-                bucket = tmp
+            elif quick == 0 and v3:
+                quick = tmp
                 tmp = ''
         else:
             tmp += valores[i]
 
         print(valores[i])
-    print('s = ', shell, ' b1 = ', buble, ' b2 = ', bucket)
+    print('s = ', insertion, ' b1 = ', bubble, ' b2 = ', quick)
 
-    a = float(shell[:10])
-    b = float(buble[:10])
-    c = float(bucket[:10])
+    a = float(insertion[:10])
+    b = float(bubble[:10])
+    c = float(quick[:10])
     gerar_grafico(a,b,c,tipo=tipo)
-
-
-
-if __name__ == '__main__':
-
-    var_pior = 'pior'
-    var_melhor = 'melhor'
-    var_random = 'random'
-
-    from gerar_numeros import gerar_numeros
-
-
-    print('gerando numeros >')
-    gerar_numeros(quantidade=200000, maximo=1000000)
-
-    print('obtendo as listas de valores > ')
-    lista_int = get_lista() #obtendo lista noarquivo a_numeros.txt gerada aleatoriamente
-
-    lista_m, lista_p = get_melhor_pior_caso(lista_int) #lista do melhor e pior caso
-
-    vendo_listas(lista_int, lista_m,lista_p) #
-
-    print('tamanhos', len(lista_int),' : ', len(lista_m),' : ', len(lista_p))
-
-
-    #"""
-    print('Calculando tempo de execução com timeit')  #
-    calcular_tempo_timeit(lista_int,var_random)       #
-    calcular_tempo_timeit(lista_m, var_melhor)        #
-    calcular_tempo_timeit(lista_p, var_pior)          #
-    print('done timeit().')
-    #"""
-
-
-    """
-    print('Calculando tempo de execução com ini_fim() > ')
-    calcular_tempo_fim_menos_inicio(lista_int, var_random)
-    calcular_tempo_fim_menos_inicio(lista_m, var_melhor)
-    calcular_tempo_fim_menos_inicio(lista_p, var_pior)
-    print('done ini_fim().')
-    """
-
-
-    print('gerando os graficos > ')
-    #gera os gráficos dos tempos
-    get_valores_pro_grafico(var_random)
-    get_valores_pro_grafico(var_pior)
-    get_valores_pro_grafico(var_melhor)
-    #"""

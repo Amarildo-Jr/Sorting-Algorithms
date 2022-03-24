@@ -1,4 +1,4 @@
-def bubbleSort(array):
+def bubblesort(array):
 	length=len(array)
 	result = True
 	while result:
