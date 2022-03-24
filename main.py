@@ -163,14 +163,15 @@ def get_valores_pro_grafico(tipo, tam):
     insertion = 0
     bubble = 0
     quick = 0
-    #heap = 0
-    #merge = 0
+    heap = 0
+    merge = 0
     tmp = ''
     v1 = True
     v2 = False
     v3 = False
     v4 = False
     v5 = False
+    #implementar o v4, v5 para permitirem que o grafico contenha tambem o heap, merge
     for i in range(len(valores)):
 
         if valores[i] == '\n':
