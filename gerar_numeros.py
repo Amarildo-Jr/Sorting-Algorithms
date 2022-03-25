@@ -2,17 +2,16 @@ import os
 from random import randint
 
 def gerar_numeros(quantidade, maximo):
-    '''gerar numeroa inteirps aleatorios'''
+    '''gerar numeros inteiros aleatorios'''
 
     lista = []
     for i in range(quantidade):
         lista.append(randint(0, maximo))
 
     print('quantidade de elementos gerados = ', len(lista))
-    print(lista)
     file = open(os.getcwd() + '/numeros.txt', 'w')
     for i in range(len(lista)):
-        if i == 999:
+        if i == quantidade + 1:
             file.write(str(lista[i]))
         else:
             file.write(str(lista[i])+'\n')

@@ -13,8 +13,6 @@ def get_lista():
     lista = file.read()
     file.close()
 
-    #print('lista do arquivo file = ', lista, 'tamanho = ', len(lista))
-
     tmp = ''
 
     for i in lista:
@@ -24,43 +22,42 @@ def get_lista():
             lista_int.append(int(tmp))
             tmp = ''
 
-    #print('lista_int = ', lista_int)
     return lista_int
 
 def get_melhor_pior_caso(lista_int):
-    print('processando lista melhor e pior caso > ')
+    print('>>>processando lista ordenada em ordem crescente e outra em decrescente')
 
     lista_m = sorted(lista_int)
     lista_p = []
     for i in range(len(lista_m)):
         pos = len(lista_m) - i
-        #print('ind = ', len(lista_m), ' - ', i, 'valor = ', pos)
         lista_p.append(lista_m[pos - 1])
+    print('>>>listas criadas ')
     return lista_m, lista_p,
 
 def vendo_listas(lista_int,lista_m, lista_p):
     print('lista aleatoria = ', lista_int, ' tam = ', len(lista_int))
-    print('lista no melhor caso = ', lista_m, ' tam = ', len(lista_m))
-    print('lista no pior caso = ', lista_p, ' tam = ', len(lista_p))
+    print('lista ja ordenada = ', lista_m, ' tam = ', len(lista_m))
+    print('lista ordenada inversamente = ', lista_p, ' tam = ', len(lista_p))
 
 def calcular_tempo_timeit(lista, caso):
     '''calcular tempo de execucao'''
 
     operacao = 'w'
 
-    name_file = os.getcwd()+'/' + "temposTimeit" + caso + str(len(lista)) +'.txt'
-    name_file1 = os.getcwd()+'/' + "temposApenasNum" + caso + str(len(lista)) +'.txt'
+    name_file = os.getcwd() +'/timeIt/' + "temposTimeit" + caso + str(len(lista)) +'.txt'
+    name_file1 = os.getcwd() +'/timeIt/' + "temposApenasNum" + caso + str(len(lista)) +'.txt'
     arquivo = open(name_file, operacao)
     arquivo1 = open(name_file1, operacao)
 
     #calculando o InsertionSort()
-    print('calculando insertionsort em caso ', caso)
+    print('>>> calculando insertionsort em caso ', caso)
     tempo_insertionSort = timeit.timeit("insertionsort({})".format(lista), setup="from __main__ import insertionsort", number=1)
     arquivo.write("InsertionSort " + caso + " :"  + str(float(tempo_insertionSort))+'\n')
     arquivo1.write(str(float(tempo_insertionSort))+'\n')
     print('insertion done.')
 
-    print('calculando bubble em caso ', caso)
+    print('>>> calculando bubble em caso ', caso)
     # calculando o BubbleSort()
     tempo_BubbleSort = timeit.timeit("bubblesort({})".format(lista), setup="from __main__ import bubblesort", number=1)
     arquivo.write("BubbleSort: " + caso + " :"  + str(float(tempo_BubbleSort))+'\n')
@@ -68,21 +65,21 @@ def calcular_tempo_timeit(lista, caso):
     print('bubble done.')
 
     # calculando o HeapSort()
-    print('calculando heap em caso ', caso)
+    print('>>> calculando heap em caso ', caso)
     tempo_HeapSort = timeit.timeit("heapsort({})".format(lista), setup="from __main__ import heapsort", number=1)
     arquivo.write("HeapSort: " + caso + " :"  + str(float(tempo_HeapSort))+'\n')
     arquivo1.write(str(float(tempo_HeapSort))+'\n')
     print('heap done.')
 
     # calculando o QuickSort()
-    print('calculando quick em caso ', caso)
+    print('>>> calculando quick em caso ', caso)
     tempo_QuickSort = timeit.timeit("quicksort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import quicksort", number=1)
     arquivo.write("QuickSort: " + caso + " :"  + str(float(tempo_QuickSort))+'\n')
     arquivo1.write(str(float(tempo_QuickSort))+'\n')
     print('quick done.')
 
     # calculando o MergeSort()
-    print('calculando merge em caso ', caso)
+    print('>>> calculando merge em caso ', caso)
     tempo_MergeSort = timeit.timeit("mergesort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import mergesort", number=1)
     arquivo.write("MergeSort " + caso + " :" + str(float(tempo_MergeSort))+'\n')
     arquivo1.write(str(float(tempo_MergeSort))+'\n')
@@ -96,7 +93,7 @@ def calcular_tempo_fim_menos_inicio(lista):
 
     operacao = 'w'
 
-    name_file = os.getcwd()+'/'+ "tempoFim-Inicio" + str(len(lista)) + '.txt'
+    name_file = os.getcwd()+'/fim-Inicio/'+ "tempoFim-Inicio" + str(len(lista)) + '.txt'
     arquivo = open(name_file, operacao)
 
     #calculando o InsertionSort()
@@ -151,14 +148,14 @@ def gerar_grafico(insertion, buble, quick, tipo):
     plt.tight_layout()
     plt.grid(True)
     plt.savefig(os.getcwd()+'/_plot/'+str(tipo)+'.png')
-    print('figura ', tipo, '.png salva!')
+    print('>>> figura ', tipo, '.png salva!')
     plt.show()
 
 def get_valores_pro_grafico(tipo, tam):
     ''''''
-    arquivo = open(os.getcwd()+'/temposApenasNum'+str(tipo)+str(tam)+'.txt', 'r')
+    arquivo = open(os.getcwd()+'/timeIt/temposApenasNum'+str(tipo)+str(tam)+'.txt', 'r')
     valores = arquivo.read()
-    print(valores)
+    # print(valores)
     arquivo.close()
     insertion = 0
     bubble = 0
@@ -191,7 +188,7 @@ def get_valores_pro_grafico(tipo, tam):
         else:
             tmp += valores[i]
 
-        print(valores[i])
+        # print(valores[i])
     print('s = ', insertion, ' b1 = ', bubble, ' b2 = ', quick)
 
     a = float(insertion[:10])
