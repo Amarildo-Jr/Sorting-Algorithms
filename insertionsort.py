@@ -10,6 +10,5 @@ def insertionsort(vetor):
         vetor[j + 1] = x
     return vetor
 
-vetor = [4,1,3,2,16,9,10,14,8,7]
-
-print(insertionsort(vetor))
+# vetor = [5, 8, 3, 6, 9, 0, 2, 4, 1, 7, 10] #Caso para teste de ordenacao
+# print(insertionsort(vetor))

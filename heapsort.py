@@ -43,8 +43,5 @@ def max_heapify(vetor, i, heap_size):
 
         max_heapify(vetor, higher, heap_size)
 
-vetor1 = [4,1,3,2,16,9,10,14,8,7]
-vetor2 = [4,1,3,2,16,9,10,14,8,7]
-
-print(build_max_heap(vetor1)) 
-print(heapsort(vetor2))
+# vetor = [5, 8, 3, 6, 9, 0, 2, 4, 1, 7, 10] #Caso para teste de ordenacao
+# print(heapsort(vetor))

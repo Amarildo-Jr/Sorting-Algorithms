@@ -29,3 +29,5 @@ def merge(A, p, q, u):
             A[k] = R[j]
             j = j + 1
     
+# vetor = [5, 8, 3, 6, 9, 0, 2, 4, 1, 7, 10] #Caso para teste de ordenacao
+# print(mergesort(vetor, 0, len(vetor) - 1))

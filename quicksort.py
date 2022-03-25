@@ -18,3 +18,6 @@ def quicksort(A, p, u):
     if u > i:
         quicksort(A, i, u)
     return A
+
+# vetor = [5, 8, 3, 6, 9, 0, 2, 4, 1, 7, 10] #Caso para teste de ordenacao
+# print(quicksort(vetor, 0, len(vetor) - 1))

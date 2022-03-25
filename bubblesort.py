@@ -12,3 +12,6 @@ def bubblesort(array):
 				result = True
 			i=i+1
 	return array
+
+# vetor = [5, 8, 3, 6, 9, 0, 2, 4, 1, 7, 10] #Caso para teste de ordenacao
+# print(bubblesort(vetor))
