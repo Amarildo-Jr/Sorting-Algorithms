@@ -16,7 +16,8 @@ lista, listam, listap = [], [], []
 print("\nBem-vindo a aplicacao dos Algoritmos de ordenacao. \nPara iniciar, defina uma entrada e após isso execute os algoritmos.",
     "\nPor ultimo pode gerar os graficos de comparacao com o tempo de cada")
 while option:
-    print("\n1. Gerar uma entrada de numeros com determinado tamanho", 
+    print("\n0. Sair da aplicação",
+    "1. Gerar uma entrada de numeros com determinado tamanho", 
     "2. Executar os algoritmos e salvar os tempos de ordenacao de cada",
     "3. Verificar os graficos de comparacao de cada", 
     "4. Vizualizar as listas: aleatoria, ordenada e ordenada inversamente", sep="\n")
