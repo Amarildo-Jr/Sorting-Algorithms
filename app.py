@@ -24,23 +24,25 @@ while option:
     if option == 1:
         quantidade_numeros = 0
         opcao_correta = True
-        print("\nTamanhos da entrada\n a) 100", " b) 1.000", " c) 5.000", " d) 30.000", " e) 50.000", " f) 100.000", " g) 150.000", " h) 200.000", sep='\n')
+        print("\nTamanhos da entrada\n a) 100", " b) 500", " c) 1.000", " d) 5.000", " e) 30.000", " f) 50.000", " g) 100.000", " h) 150.000", " i) 200.000", sep='\n')
         opcao_entrada = str(input("Digite apenas a letra da opcao corresponde ao tamanho da entrada que deseja: ")).lower()
         if 'a' in opcao_entrada:
             quantidade_numeros = 100
         elif 'b' in opcao_entrada:
-            quantidade_numeros = 1000
+            quantidade_numeros = 500
         elif 'c' in opcao_entrada:
-            quantidade_numeros = 5000
+            quantidade_numeros = 1000
         elif 'd' in opcao_entrada:
-            quantidade_numeros = 30000
+            quantidade_numeros = 5000
         elif 'e' in opcao_entrada:
-            quantidade_numeros = 50000
+            quantidade_numeros = 30000
         elif 'f' in opcao_entrada:
-            quantidade_numeros = 100000
+            quantidade_numeros = 50000
         elif 'g' in opcao_entrada:
-            quantidade_numeros = 150000
+            quantidade_numeros = 100000
         elif 'h' in opcao_entrada:
+            quantidade_numeros = 150000
+        elif 'i' in opcao_entrada:
             quantidade_numeros = 200000
         else:
             print("--> Digite uma entrada valida")
