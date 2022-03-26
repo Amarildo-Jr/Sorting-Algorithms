@@ -52,35 +52,50 @@ def calcular_tempo_timeit(lista, caso):
 
     #calculando o InsertionSort()
     print('>>> calculando insertionsort em caso ', caso)
-    tempo_insertionSort = timeit.timeit("insertionsort({})".format(lista), setup="from __main__ import insertionsort", number=1)
+    tempo_insertionSort = 0
+    for i in range (0, 3):
+        tempo_insertionSort += timeit.timeit("insertionsort({})".format(lista), setup="from __main__ import insertionsort", number=1)
+    tempo_insertionSort /= 3
     arquivo.write("InsertionSort " + caso + " :"  + str(float(tempo_insertionSort)) + " comparacoes: " + str(get_comparision_quantity_insertionsort()) + '\n')
     arquivo1.write(str(float(tempo_insertionSort))+'\n')
     print('insertion done.')
 
     print('>>> calculando bubble em caso ', caso)
     # calculando o BubbleSort()
-    tempo_BubbleSort = timeit.timeit("bubblesort({})".format(lista), setup="from __main__ import bubblesort", number=1)
+    tempo_BubbleSort = 0
+    for i in range (0, 3):
+        tempo_BubbleSort = timeit.timeit("bubblesort({})".format(lista), setup="from __main__ import bubblesort", number=1)
+    tempo_BubbleSort /= 3
     arquivo.write("BubbleSort: " + caso + " :"  + str(float(tempo_BubbleSort)) + " comparacoes: " + str(get_comparision_quantity_bubblesort()) + '\n')
     arquivo1.write(str(float(tempo_BubbleSort))+'\n')
     print('bubble done.')
 
     # calculando o HeapSort()
     print('>>> calculando heap em caso ', caso)
-    tempo_HeapSort = timeit.timeit("heapsort({})".format(lista), setup="from __main__ import heapsort", number=1)
+    tempo_HeapSort = 0
+    for i in range (0, 3):
+        tempo_HeapSort = timeit.timeit("heapsort({})".format(lista), setup="from __main__ import heapsort", number=1)
+    tempo_HeapSort /= 3
     arquivo.write("HeapSort: " + caso + " :"  + str(float(tempo_HeapSort))+ " comparacoes: " + str(get_comparision_quantity_heapsort()) + '\n')
     arquivo1.write(str(float(tempo_HeapSort))+'\n')
     print('heap done.')
 
     # calculando o QuickSort()
     print('>>> calculando quick em caso ', caso)
-    tempo_QuickSort = timeit.timeit("quicksort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import quicksort", number=1)
+    tempo_QuickSort = 0
+    for i in range (0, 3):
+        tempo_QuickSort = timeit.timeit("quicksort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import quicksort", number=1)
+    tempo_QuickSort /= 3
     arquivo.write("QuickSort: " + caso + " :"  + str(float(tempo_QuickSort)) + " comparacoes: " + str(get_comparision_quantity_quicksort()) + '\n')
     arquivo1.write(str(float(tempo_QuickSort))+'\n')
     print('quick done.')
 
     # calculando o MergeSort()
     print('>>> calculando merge em caso ', caso)
-    tempo_MergeSort = timeit.timeit("mergesort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import mergesort", number=1)
+    tempo_MergeSort = 0
+    for i in range (0, 3):
+        tempo_MergeSort = timeit.timeit("mergesort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import mergesort", number=1)
+    tempo_MergeSort /= 3
     arquivo.write("MergeSort " + caso + " :" + str(float(tempo_MergeSort))+ " comparacoes: " + str(get_comparision_quantity_mergesort()) + '\n')
     arquivo1.write(str(float(tempo_MergeSort))+'\n')
     print('merge done.')
