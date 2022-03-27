@@ -87,4 +87,5 @@ while option:
         main.vendo_listas
         main.vendo_listas(lista, listam, listap)
     else:
-        print("\n--> Digite uma opcao valida.")
+        if option != 0:
+            print("\n--> Digite uma opcao valida.")
