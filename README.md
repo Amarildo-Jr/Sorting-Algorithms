@@ -25,8 +25,8 @@
 
 ## Executando
 
-Para utilizar o projeto para a comparação dos algoritmos, basta seguir três passos após executar o app.py:
-    1. Definir uma entrada através da opção 1 e selecionar o tamanho correspondente a
-    2. Após isso, executar os algoritmos com a opção 2. Neste caso, os algoritmos já são executados três vezes e o tempo resultante é a média das três execuções.",
-    3. Por último, é possível visualizar no console os valores de tempo para cada algoritmo e o numero de comparações, basta escolher a opção 3. 
-    → Ademais, você pode gerar os gráficos para uma melhor comparação entre cada um(opção 4).
+Para utilizar o projeto para a comparação dos algoritmos, basta seguir os passos a seguir:
+1. Após executar o app.py, deve-se definir uma entrada através da opção 1 e selecionar o tamanho correspondente.
+2. Após isso, executar os algoritmos com a opção 2. Neste caso, os algoritmos já são executados três vezes e o tempo resultante é a média das três execuções.
+3. Ainda é possível visualizar no console os valores de tempo para cada algoritmo e o numero de comparações, basta escolher a opção 3. 
+4. Ademais, você pode gerar os gráficos para uma melhor comparação entre cada um(opção 4).
