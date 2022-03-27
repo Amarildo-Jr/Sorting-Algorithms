@@ -19,8 +19,9 @@ while option:
     print("\n0. Sair da aplicação",
     "1. Gerar uma entrada de numeros com determinado tamanho", 
     "2. Executar os algoritmos e salvar os tempos de ordenacao de cada",
-    "3. Verificar os graficos de comparacao de cada", 
-    "4. Vizualizar as listas: aleatoria, ordenada e ordenada inversamente", sep="\n")
+    "3. Mostrar o tempo e o numero de comparacoes de cada algoritmo em cada caso", 
+    "4. Verificar os graficos de comparacao entre os algoritmos", 
+    "5. Visualizar as listas: aleatoria, ordenada e ordenada inversamente", sep="\n")
     option = int(input("Digite a opcao desejada: "))
     if option == 1:
         quantidade_numeros = 0
@@ -66,6 +67,15 @@ while option:
         if lista == [] or listam == [] or listap == []:
             print("\n--> Defina o tamanho de uma entrada antes de executar os algoritmos.")
         elif not algoritmos_executados:
+            print("\n--> Execute os algoritmos para poder visualizar os resultados")
+        else:
+            main.mostrarResultados(len(lista), var_decrescente)
+            main.mostrarResultados(len(lista), var_crescente)
+            main.mostrarResultados(len(lista), var_random)
+    elif option == 4:
+        if lista == [] or listam == [] or listap == []:
+            print("\n--> Defina o tamanho de uma entrada antes de executar os algoritmos.")
+        elif not algoritmos_executados:
             print("\n--> Execute os algoritmos primeiro para poder gerar os graficos")
         else:
             print('>>> gerando os graficos')
@@ -73,6 +83,8 @@ while option:
             main.get_valores_pro_grafico(var_random, len(lista))
             main.get_valores_pro_grafico(var_decrescente, len(lista))
             main.get_valores_pro_grafico(var_crescente, len(lista))
-    elif option == 4:
+    elif option == 5:
         main.vendo_listas
         main.vendo_listas(lista, listam, listap)
+    else:
+        print("\n--> Digite uma opcao valida.")

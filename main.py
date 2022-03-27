@@ -56,7 +56,7 @@ def calcular_tempo_timeit(lista, caso):
     for i in range (0, 3):
         tempo_insertionSort += timeit.timeit("insertionsort({})".format(lista), setup="from __main__ import insertionsort", number=1)
     tempo_insertionSort /= 3
-    arquivo.write("InsertionSort " + caso + " :"  + str(float(tempo_insertionSort)) + " comparacoes: " + str(get_comparision_quantity_insertionsort()) + '\n')
+    arquivo.write("InsertionSort " + caso + ": "  + str(float(tempo_insertionSort)) + "; comparacoes: " + str(get_comparision_quantity_insertionsort()) + '\n')
     arquivo1.write(str(float(tempo_insertionSort))+'\n')
     print('insertion done.')
 
@@ -66,7 +66,7 @@ def calcular_tempo_timeit(lista, caso):
     for i in range (0, 3):
         tempo_BubbleSort = timeit.timeit("bubblesort({})".format(lista), setup="from __main__ import bubblesort", number=1)
     tempo_BubbleSort /= 3
-    arquivo.write("BubbleSort: " + caso + " :"  + str(float(tempo_BubbleSort)) + " comparacoes: " + str(get_comparision_quantity_bubblesort()) + '\n')
+    arquivo.write("BubbleSort " + caso + ": "  + str(float(tempo_BubbleSort)) + "; comparacoes: " + str(get_comparision_quantity_bubblesort()) + '\n')
     arquivo1.write(str(float(tempo_BubbleSort))+'\n')
     print('bubble done.')
 
@@ -76,7 +76,7 @@ def calcular_tempo_timeit(lista, caso):
     for i in range (0, 3):
         tempo_HeapSort = timeit.timeit("heapsort({})".format(lista), setup="from __main__ import heapsort", number=1)
     tempo_HeapSort /= 3
-    arquivo.write("HeapSort: " + caso + " :"  + str(float(tempo_HeapSort))+ " comparacoes: " + str(get_comparision_quantity_heapsort()) + '\n')
+    arquivo.write("HeapSort " + caso + ": "  + str(float(tempo_HeapSort))+ "; comparacoes: " + str(get_comparision_quantity_heapsort()) + '\n')
     arquivo1.write(str(float(tempo_HeapSort))+'\n')
     print('heap done.')
 
@@ -86,7 +86,7 @@ def calcular_tempo_timeit(lista, caso):
     for i in range (0, 3):
         tempo_QuickSort = timeit.timeit("quicksort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import quicksort", number=1)
     tempo_QuickSort /= 3
-    arquivo.write("QuickSort: " + caso + " :"  + str(float(tempo_QuickSort)) + " comparacoes: " + str(get_comparision_quantity_quicksort()) + '\n')
+    arquivo.write("QuickSort " + caso + ": "  + str(float(tempo_QuickSort)) + "; comparacoes: " + str(get_comparision_quantity_quicksort()) + '\n')
     arquivo1.write(str(float(tempo_QuickSort))+'\n')
     print('quick done.')
 
@@ -96,7 +96,7 @@ def calcular_tempo_timeit(lista, caso):
     for i in range (0, 3):
         tempo_MergeSort = timeit.timeit("mergesort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import mergesort", number=1)
     tempo_MergeSort /= 3
-    arquivo.write("MergeSort " + caso + " :" + str(float(tempo_MergeSort))+ " comparacoes: " + str(get_comparision_quantity_mergesort()) + '\n')
+    arquivo.write("MergeSort " + caso + ": " + str(float(tempo_MergeSort))+ "; comparacoes: " + str(get_comparision_quantity_mergesort()) + '\n')
     arquivo1.write(str(float(tempo_MergeSort))+'\n')
     print('merge done.')
 
@@ -147,22 +147,22 @@ def calcular_tempo_fim_menos_inicio(lista):
     arquivo.write("MergeSort" + str(float(tempo_mergeSort))+'\n')
     arquivo.close()
 
-def gerar_grafico(insertion, buble, quick, tipo):
+def gerar_grafico(insertion, buble, quick, heap, merge, tipo, tamanho):
     ''''''
-    y_axis = [insertion, buble, quick]
+    y_axis = [insertion, buble, quick, heap, merge]
     x_axis = range(len(y_axis))
     width_n = 0.4
     bar_color = 'green'
-    algortirmos = ['insertion', 'buble', 'quick']
+    algortirmos = ['insertion', 'buble', 'quick', 'heap', 'merge']
 
     plt.bar(x_axis, y_axis, width=width_n, color=bar_color, align='center')
-    plt.ylabel('Tempo')
+    plt.ylabel('Tempo(s)')
     plt.xlabel('Algoritmos')
     plt.xticks(x_axis, algortirmos, rotation='vertical')
-    plt.title('Caso '+str(tipo))
+    plt.title('Caso '+str(tipo)+' de tamanho '+str(tamanho))
     plt.tight_layout()
     plt.grid(True)
-    plt.savefig(os.getcwd()+'/_plot/'+str(tipo)+'.png')
+    plt.savefig(os.getcwd()+'/_plot/'+str(tipo)+str(tamanho)+'.png')
     print('>>> figura ', tipo, '.png salva!')
     plt.show()
 
@@ -183,7 +183,6 @@ def get_valores_pro_grafico(tipo, tam):
     v3 = False
     v4 = False
     v5 = False
-    #implementar o v4, v5 para permitirem que o grafico contenha tambem o heap, merge
     for i in range(len(valores)):
 
         if valores[i] == '\n':
@@ -200,13 +199,30 @@ def get_valores_pro_grafico(tipo, tam):
             elif quick == 0 and v3:
                 quick = tmp
                 tmp = ''
+                v3 = False
+                v4 = True
+            elif heap == 0 and v4:
+                heap = tmp
+                tmp = ''
+                v4 = False
+                v5 = True
+            elif merge == 0 and v5:
+                merge = tmp
+                tmp = ''
         else:
             tmp += valores[i]
-
-        # print(valores[i])
-    print('s = ', insertion, ' b1 = ', bubble, ' b2 = ', quick)
+    print('insertion = ', insertion, ' bubble = ', bubble, 'quick = ', quick, ' heap = ', heap, ' merge = ', merge)
 
     a = float(insertion[:10])
     b = float(bubble[:10])
     c = float(quick[:10])
-    gerar_grafico(a,b,c,tipo=tipo)
+    d = float(heap[:10])
+    e = float(merge[:10])
+    gerar_grafico(a,b,c,d,e,tipo=tipo, tamanho=tam)
+
+def mostrarResultados(tipo, tam):
+    arquivo = open(os.getcwd()+'/timeIt/temposTimeit'+str(tam)+str(tipo)+'.txt', 'r')
+    valores = arquivo.read()
+    arquivo.close()
+    print("\nAlgoritmo->caso->tempo(s)->n de comparacoes\n")
+    print(valores)
