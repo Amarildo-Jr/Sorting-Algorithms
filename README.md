@@ -1,4 +1,4 @@
-# Sorting-Algorithms
+# Algoritmos de Ordenação
 
 > Este trabalho foi desenvolvido na linguagem Python com o intuito de fazer a comparação entre os algoritmos de ordenação para entradas variadas(100-200.000) e três tipos de entradas: vetor aleatório, vetor ordenado em ordem crescente e decrescente. 
 > Atividade feita para a disciplina de Projeto e Análise de Algoritmos do curso de Ciência da Computação.
