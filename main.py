@@ -149,20 +149,45 @@ def calcular_tempo_fim_menos_inicio(lista):
 
 def gerar_grafico(insertion, buble, quick, heap, merge, tipo, tamanho):
     ''''''
+
     y_axis = [insertion, buble, quick, heap, merge]
     x_axis = range(len(y_axis))
     width_n = 0.4
     bar_color = 'green'
-    algortirmos = ['insertion', 'buble', 'quick', 'heap', 'merge']
+    algoritmos = ['insertion', 'bubble', 'quick', 'heap', 'merge']
 
     plt.bar(x_axis, y_axis, width=width_n, color=bar_color, align='center')
     plt.ylabel('Tempo(s)')
     plt.xlabel('Algoritmos')
-    plt.xticks(x_axis, algortirmos, rotation='vertical')
+    plt.xticks(x_axis, algoritmos, rotation='vertical')
     plt.title('Caso '+str(tipo)+' de tamanho '+str(tamanho))
     plt.tight_layout()
     plt.grid(True)
-    plt.savefig(os.getcwd()+'/_plot/'+str(tipo)+str(tamanho)+'.png')
+    plt.savefig(os.getcwd()+'/_plot/tempos-'+str(tipo)+str(tamanho)+'.png')
+    print('>>> figura ', tipo, '.png salva!')
+    plt.show()
+
+def gerar_grafico_comparacoes(tipo, tamanho):
+    comp_insertion = get_comparision_quantity_insertionsort()
+    comp_bubble = get_comparision_quantity_bubblesort()
+    comp_quick = get_comparision_quantity_quicksort()
+    comp_heap = get_comparision_quantity_heapsort()
+    comp_merge = get_comparision_quantity_mergesort()
+
+    y_axis = [comp_insertion, comp_bubble, comp_quick, comp_heap, comp_merge]
+    x_axis = range(len(y_axis))
+    width_n = 0.4
+    bar_color = 'blue'
+    algoritmos = ['insertion', 'bubble', 'quick', 'heap', 'merge']
+
+    plt.bar(x_axis, y_axis, width=width_n, color=bar_color, align='center')
+    plt.ylabel('Comparações')
+    plt.xlabel('Algoritmos')
+    plt.xticks(x_axis, algoritmos, rotation='vertical')
+    plt.title('Caso '+str(tipo)+' de tamanho '+str(tamanho))
+    plt.tight_layout()
+    plt.grid(True)
+    plt.savefig(os.getcwd()+'/_plot/comparacoes-'+str(tipo)+str(tamanho)+'.png')
     print('>>> figura ', tipo, '.png salva!')
     plt.show()
 
@@ -213,12 +238,13 @@ def get_valores_pro_grafico(tipo, tam):
             tmp += valores[i]
     print('insertion = ', insertion, ' bubble = ', bubble, 'quick = ', quick, ' heap = ', heap, ' merge = ', merge)
 
-    a = float(insertion[:10])
-    b = float(bubble[:10])
-    c = float(quick[:10])
-    d = float(heap[:10])
-    e = float(merge[:10])
+    a = float(insertion)
+    b = float(bubble)
+    c = float(quick)
+    d = float(heap)
+    e = float(merge)
     gerar_grafico(a,b,c,d,e,tipo=tipo, tamanho=tam)
+    gerar_grafico_comparacoes(tipo=tipo, tamanho=tam)
 
 def mostrarResultados(tipo, tam):
     arquivo = open(os.getcwd()+'/timeIt/temposTimeit'+str(tam)+str(tipo)+'.txt', 'r')
