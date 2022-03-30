@@ -175,7 +175,8 @@ def gerar_grafico(insertion, buble, quick, heap, merge, tipo, tamanho):
     plt.grid(True)
     plt.savefig(os.getcwd()+'/_plot/tempos-'+str(tipo)+str(tamanho)+'.png')
     print('>>> figura ', tipo, '.png salva!')
-    plt.show()
+    plt.close()
+    # plt.show()
 
 def gerar_grafico_comparacoes(comp_insertion, comp_bubble, comp_quick, comp_heap, comp_merge, tipo, tamanho):
 
@@ -194,7 +195,9 @@ def gerar_grafico_comparacoes(comp_insertion, comp_bubble, comp_quick, comp_heap
     plt.grid(True)
     plt.savefig(os.getcwd()+'/_plot/comparacoes-'+str(tipo)+str(tamanho)+'.png')
     print('>>> figura ', tipo, '.png salva!')
-    plt.show()
+    plt.close()
+    # plt.show()
+
 
 def get_valores_pro_grafico(tipo, tam, valor_tipo):
     ''''''
