@@ -47,8 +47,12 @@ def calcular_tempo_timeit(lista, caso):
 
     name_file = os.getcwd() +'/timeIt/' + "temposTimeit" + caso + str(len(lista)) +'.txt'
     name_file1 = os.getcwd() +'/timeIt/' + "temposApenasNum" + caso + str(len(lista)) +'.txt'
+
+    name_file_comparisons = os.getcwd() +'/comparisons/' + "comparacoesApenasNum" + caso + str(len(lista)) +'.txt'
+
     arquivo = open(name_file, operacao)
     arquivo1 = open(name_file1, operacao)
+    arquivo2 = open(name_file_comparisons, operacao)
 
     #calculando o InsertionSort()
     print('>>> calculando insertionsort em caso ', caso)
@@ -58,6 +62,7 @@ def calcular_tempo_timeit(lista, caso):
     tempo_insertionSort /= 3
     arquivo.write("InsertionSort " + caso + ": "  + str(float(tempo_insertionSort)) + "; comparacoes: " + str(get_comparision_quantity_insertionsort()) + '\n')
     arquivo1.write(str(float(tempo_insertionSort))+'\n')
+    arquivo2.write(str(get_comparision_quantity_insertionsort())+'\n')
     print('insertion done.')
 
     print('>>> calculando bubble em caso ', caso)
@@ -68,6 +73,7 @@ def calcular_tempo_timeit(lista, caso):
     tempo_BubbleSort /= 3
     arquivo.write("BubbleSort " + caso + ": "  + str(float(tempo_BubbleSort)) + "; comparacoes: " + str(get_comparision_quantity_bubblesort()) + '\n')
     arquivo1.write(str(float(tempo_BubbleSort))+'\n')
+    arquivo2.write(str(get_comparision_quantity_bubblesort())+'\n')
     print('bubble done.')
 
     # calculando o HeapSort()
@@ -78,6 +84,7 @@ def calcular_tempo_timeit(lista, caso):
     tempo_HeapSort /= 3
     arquivo.write("HeapSort " + caso + ": "  + str(float(tempo_HeapSort))+ "; comparacoes: " + str(get_comparision_quantity_heapsort()) + '\n')
     arquivo1.write(str(float(tempo_HeapSort))+'\n')
+    arquivo2.write(str(get_comparision_quantity_heapsort())+'\n')
     print('heap done.')
 
     # calculando o QuickSort()
@@ -88,6 +95,7 @@ def calcular_tempo_timeit(lista, caso):
     tempo_QuickSort /= 3
     arquivo.write("QuickSort " + caso + ": "  + str(float(tempo_QuickSort)) + "; comparacoes: " + str(get_comparision_quantity_quicksort()) + '\n')
     arquivo1.write(str(float(tempo_QuickSort))+'\n')
+    arquivo2.write(str(get_comparision_quantity_quicksort())+'\n')
     print('quick done.')
 
     # calculando o MergeSort()
@@ -98,10 +106,12 @@ def calcular_tempo_timeit(lista, caso):
     tempo_MergeSort /= 3
     arquivo.write("MergeSort " + caso + ": " + str(float(tempo_MergeSort))+ "; comparacoes: " + str(get_comparision_quantity_mergesort()) + '\n')
     arquivo1.write(str(float(tempo_MergeSort))+'\n')
+    arquivo2.write(str(get_comparision_quantity_mergesort())+'\n')
     print('merge done.')
 
     arquivo.close()
     arquivo1.close()
+    arquivo2.close()
 
 def calcular_tempo_fim_menos_inicio(lista):
     '''calcular tempo de execucao'''
@@ -167,12 +177,7 @@ def gerar_grafico(insertion, buble, quick, heap, merge, tipo, tamanho):
     print('>>> figura ', tipo, '.png salva!')
     plt.show()
 
-def gerar_grafico_comparacoes(tipo, tamanho):
-    comp_insertion = get_comparision_quantity_insertionsort()
-    comp_bubble = get_comparision_quantity_bubblesort()
-    comp_quick = get_comparision_quantity_quicksort()
-    comp_heap = get_comparision_quantity_heapsort()
-    comp_merge = get_comparision_quantity_mergesort()
+def gerar_grafico_comparacoes(comp_insertion, comp_bubble, comp_quick, comp_heap, comp_merge, tipo, tamanho):
 
     y_axis = [comp_insertion, comp_bubble, comp_quick, comp_heap, comp_merge]
     x_axis = range(len(y_axis))
@@ -191,9 +196,14 @@ def gerar_grafico_comparacoes(tipo, tamanho):
     print('>>> figura ', tipo, '.png salva!')
     plt.show()
 
-def get_valores_pro_grafico(tipo, tam):
+def get_valores_pro_grafico(tipo, tam, valor_tipo):
     ''''''
-    arquivo = open(os.getcwd()+'/timeIt/temposApenasNum'+str(tipo)+str(tam)+'.txt', 'r')
+    arquivo = ""
+    if valor_tipo == "tempo":
+        arquivo = open(os.getcwd()+'/timeIt/temposApenasNum'+str(tipo)+str(tam)+'.txt', 'r')
+    else:
+        arquivo = open(os.getcwd()+'/comparisons/comparacoesApenasNum'+str(tipo)+str(tam)+'.txt', 'r')
+
     valores = arquivo.read()
     # print(valores)
     arquivo.close()
@@ -243,8 +253,17 @@ def get_valores_pro_grafico(tipo, tam):
     c = float(quick)
     d = float(heap)
     e = float(merge)
-    gerar_grafico(a,b,c,d,e,tipo=tipo, tamanho=tam)
-    gerar_grafico_comparacoes(tipo=tipo, tamanho=tam)
+
+    print(a)
+    print(b)
+    print(c)
+    print(d)
+    print(e)
+
+    if valor_tipo == "tempo":
+        gerar_grafico(a,b,c,d,e,tipo=tipo, tamanho=tam)
+    else:
+        gerar_grafico_comparacoes(a,b,c,d,e,tipo=tipo, tamanho=tam)
 
 def mostrarResultados(tipo, tam):
     arquivo = open(os.getcwd()+'/timeIt/temposTimeit'+str(tam)+str(tipo)+'.txt', 'r')

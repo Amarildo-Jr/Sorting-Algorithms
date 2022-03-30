@@ -80,9 +80,12 @@ while option:
         else:
             print('>>> gerando os graficos')
             #gera os gráficos dos tempos
-            main.get_valores_pro_grafico(var_random, len(lista))
-            main.get_valores_pro_grafico(var_decrescente, len(lista))
-            main.get_valores_pro_grafico(var_crescente, len(lista))
+            main.get_valores_pro_grafico(var_random, len(lista), "tempo")
+            main.get_valores_pro_grafico(var_random, len(lista), "comparacao")
+            main.get_valores_pro_grafico(var_decrescente, len(lista), "tempo")
+            main.get_valores_pro_grafico(var_decrescente, len(lista), "comparacao")
+            main.get_valores_pro_grafico(var_crescente, len(lista), "tempo")
+            main.get_valores_pro_grafico(var_crescente, len(lista), "comparacao")
     elif option == 5:
         main.vendo_listas
         main.vendo_listas(lista, listam, listap)
