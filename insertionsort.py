@@ -19,6 +19,7 @@ def insertionsort(vetor):
 
         while j >= 0 and x < vetor[j]:
             add_comparision_quantity()
+            add_comparision_quantity()
             vetor[j + 1] = vetor[j]
             j -= 1
         add_comparision_quantity()

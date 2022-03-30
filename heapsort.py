@@ -51,6 +51,7 @@ def max_heapify(vetor, i, heap_size):
     
     add_comparision_quantity()
     if r <= heap_size and vetor[r] > vetor[higher]:
+        add_comparision_quantity()
         higher = r
         
     add_comparision_quantity()
