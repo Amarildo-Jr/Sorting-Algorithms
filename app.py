@@ -4,6 +4,7 @@ from bubblesort import bubblesort
 from quicksort import quicksort
 from mergesort import mergesort
 from heapsort import heapsort
+from hybridsort import hybridsort
 from gerar_numeros import gerar_numeros
 
 var_decrescente = 'decrescente'
@@ -94,9 +95,9 @@ while option:
             if lista == [] or listam == [] or listap == []:
                 print("\n--> Defina o tamanho de uma entrada antes de executar os algoritmos.")
             else:
-                main.calcular_tempo_hybrid_timeit(lista, var_random)
-                main.calcular_tempo_hybrid_timeit(listam, var_crescente)
-                main.calcular_tempo_hybrid_timeit(listap, var_decrescente)
+                main.calcular_tempo_hibrido_timeit(lista, var_random)
+                main.calcular_tempo_hibrido_timeit(listam, var_crescente)
+                main.calcular_tempo_hibrido_timeit(listap, var_decrescente)
                 algoritmos_executados = True
     else:
         if option != 0:

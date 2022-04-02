@@ -53,7 +53,7 @@ def calcular_tempo_hibrido_timeit(lista, caso):
     print('>>> calculando hybridsort em caso ', caso)
     tempo_hybridsort = 0
     for i in range (0, 3):
-        tempo_hybridsort += timeit.timeit("hybridsort({})".format(lista), setup="from main import hybridsort", number=1)
+        tempo_hybridsort += timeit.timeit("hybridsort({})".format(lista), setup="from __main__ import hybridsort", number=1)
     tempo_hybridsort /= 3
     arquivo.write("Hybridsort " + caso + ": "  + str(float(tempo_hybridsort)) + "; comparacoes: " + str(get_comparision_quantity_bubblesort() + get_comparision_quantity_quicksort()) + '\n')
     print('hybrid done.')
