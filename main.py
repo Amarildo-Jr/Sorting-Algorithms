@@ -40,6 +40,26 @@ def vendo_listas(lista_int,lista_m, lista_p):
     print('lista ja ordenada = ', lista_m, ' tam = ', len(lista_m))
     print('lista ordenada inversamente = ', lista_p, ' tam = ', len(lista_p))
 
+def calcular_tempo_hibrido_timeit(lista, caso):
+    '''calcular tempo de execucao'''
+
+    operacao = 'w'
+
+    name_file = os.getcwd() +'/timeIt/' + "temposHibridoTimeit" + caso + str(len(lista)) +'.txt'
+
+    arquivo = open(name_file, operacao)
+
+    #calculando o hybridsort()
+    print('>>> calculando hybridsort em caso ', caso)
+    tempo_hybridsort = 0
+    for i in range (0, 3):
+        tempo_hybridsort += timeit.timeit("hybridsort({})".format(lista), setup="from main import hybridsort", number=1)
+    tempo_hybridsort /= 3
+    arquivo.write("Hybridsort " + caso + ": "  + str(float(tempo_hybridsort)) + "; comparacoes: " + str(get_comparision_quantity_bubblesort() + get_comparision_quantity_quicksort()) + '\n')
+    print('hybrid done.')
+
+    arquivo.close()
+
 def calcular_tempo_timeit(lista, caso):
     '''calcular tempo de execucao'''
 

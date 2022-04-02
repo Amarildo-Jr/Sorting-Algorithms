@@ -21,7 +21,8 @@ while option:
     "2. Executar os algoritmos e salvar os tempos de ordenacao de cada",
     "3. Mostrar o tempo e o numero de comparacoes de cada algoritmo em cada caso", 
     "4. Verificar os graficos de comparacao entre os algoritmos", 
-    "5. Visualizar as listas: aleatoria, ordenada e ordenada inversamente", sep="\n")
+    "5. Visualizar as listas: aleatoria, ordenada e ordenada inversamente",
+    "6. Executar algoritmo de ordenacao hibrido(AOH)", sep="\n")
     option = int(input("Digite a opcao desejada: "))
     if option == 1:
         quantidade_numeros = 0
@@ -89,6 +90,14 @@ while option:
     elif option == 5:
         main.vendo_listas
         main.vendo_listas(lista, listam, listap)
+    elif option == 6:
+            if lista == [] or listam == [] or listap == []:
+                print("\n--> Defina o tamanho de uma entrada antes de executar os algoritmos.")
+            else:
+                main.calcular_tempo_hybrid_timeit(lista, var_random)
+                main.calcular_tempo_hybrid_timeit(listam, var_crescente)
+                main.calcular_tempo_hybrid_timeit(listap, var_decrescente)
+                algoritmos_executados = True
     else:
         if option != 0:
             print("\n--> Digite uma opcao valida.")
