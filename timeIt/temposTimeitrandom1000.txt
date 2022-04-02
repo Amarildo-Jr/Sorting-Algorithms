@@ -1,5 +1,5 @@
-InsertionSort random: 0.041309866666476104; comparacoes: 1342176
-BubbleSort random: 0.08701406666690066; comparacoes: 8727021
-HeapSort random: 0.00253689999984393; comparacoes: 230790
-QuickSort random: 0.0009911666666084784; comparacoes: 144828
-MergeSort random: 0.0018280333330646197; comparacoes: 271020
+InsertionSort random: 0.044564499999902786; comparacoes: 1340130
+BubbleSort random: 1.5666666968172649e-06; comparacoes: 3675
+HeapSort random: 0.002128500000026179; comparacoes: 231150
+QuickSort random: 0.0009234333333552058; comparacoes: 141366
+MergeSort random: 0.0018307333333117033; comparacoes: 271020

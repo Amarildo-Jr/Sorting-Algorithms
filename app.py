@@ -16,7 +16,7 @@ lista, listam, listap = [], [], []
 print("\nBem-vindo a aplicacao dos Algoritmos de ordenacao. \nPara iniciar, defina uma entrada e após isso execute os algoritmos.",
     "\nPor ultimo pode gerar os graficos de comparacao com o tempo de cada")
 opcao_entrada = '`'
-for i in range(0, 2):
+for i in range(0, 8):
     opcao_entrada = chr(ord(opcao_entrada) + 1)
     for j in [1, 2, 4]:
         option = j
