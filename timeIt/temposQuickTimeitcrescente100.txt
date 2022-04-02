@@ -1,0 +1,1 @@
+QuickSort crescente: 3.839999984241634e-05; comparacoes: 9

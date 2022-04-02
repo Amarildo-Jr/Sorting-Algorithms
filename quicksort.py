@@ -1,13 +1,16 @@
-comparison_quantity = 0
+comparison_quantity_quicksort = 0
 
 def add_comparision_quantity():
-    global comparison_quantity
-    comparison_quantity += 1
+    global comparison_quantity_quicksort
+    comparison_quantity_quicksort += 1
 
 def get_comparision_quantity_quicksort():
-    return comparison_quantity
+    print("quick comp: ", id(comparison_quantity_quicksort))
+    return comparison_quantity_quicksort
 
 def quicksort(A, p, u):
+    global comparison_quantity_quicksort
+    comparison_quantity_quicksort = 0
     i = p
     j = u
     x = A[(p + u)//2]

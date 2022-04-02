@@ -1,11 +1,11 @@
-comparison_quantity = 0
+comparison_quantity_heapsort = 0
 
 def add_comparision_quantity():
-    global comparison_quantity
-    comparison_quantity += 1
+    global comparison_quantity_heapsort
+    comparison_quantity_heapsort += 1
 
 def get_comparision_quantity_heapsort():
-    return comparison_quantity
+    return comparison_quantity_heapsort
 
 def parent(i):
     return i/2
@@ -17,6 +17,8 @@ def right(i):
     return 2 * i + 2
 
 def heapsort(vetor):
+    global comparison_quantity_heapsort
+    comparison_quantity_heapsort = 0
     build_max_heap(vetor)
     heap_size = len(vetor) - 1
     

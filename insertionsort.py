@@ -1,13 +1,15 @@
-comparison_quantity = 0
+comparison_quantity_insertion = 0
 
 def add_comparision_quantity():
-    global comparison_quantity
-    comparison_quantity += 1
+    global comparison_quantity_insertion
+    comparison_quantity_insertion += 1
 
 def get_comparision_quantity_insertionsort():
-    return comparison_quantity
+    return comparison_quantity_insertion
 
 def insertionsort(vetor):
+    global comparison_quantity_insertion
+    comparison_quantity_insertion = 0
     x = 0
     j = 0
 

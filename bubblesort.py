@@ -1,20 +1,25 @@
-comparison_quantity = 0
+comparison_quantity_bubble = 0
 ordened = True
 
+
 def add_comparision_quantity():
-    global comparison_quantity
-    comparison_quantity += 1
+    global comparison_quantity_bubble
+    comparison_quantity_bubble += 1
+
 
 def get_comparision_quantity_bubblesort():
-    return comparison_quantity
+    return comparison_quantity_bubble
 
-def bubblesort(array):
-    length=len(array)
+
+def bubblesort(array, chamador):
+    global comparison_quantity_bubble
+    comparison_quantity_bubble = 0
+    length = len(array)
     result = True
     while result:
         add_comparision_quantity()
         result = False
-        i=0
+        i = 0
         while (i < length-1):
             add_comparision_quantity()
 
@@ -24,8 +29,9 @@ def bubblesort(array):
                 array[i] = array[i+1]
                 array[i+1] = tempVar
                 result = True
-                return array, False
-            i=i+1
+                if chamador == "hybrid":
+                    return array, False
+            i = i+1
         add_comparision_quantity()
 
     add_comparision_quantity()

@@ -1,0 +1,1 @@
+QuickSort crescente: 0.1768363666666725; comparacoes: 8

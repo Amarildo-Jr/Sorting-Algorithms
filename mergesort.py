@@ -1,15 +1,17 @@
 from cmath import inf
 
-comparison_quantity = 0
+comparison_quantity_merge = 0
 
 def add_comparision_quantity():
-    global comparison_quantity
-    comparison_quantity += 1
+    global comparison_quantity_merge
+    comparison_quantity_merge += 1
 
 def get_comparision_quantity_mergesort():
-    return comparison_quantity
+    return comparison_quantity_merge
 
 def mergesort(A, p, u):
+    global comparison_quantity_merge
+    comparison_quantity_merge = 0
     add_comparision_quantity()
     if p < u: 
         q = (p + u)//2

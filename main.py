@@ -1,6 +1,7 @@
 from fileinput import close
 import matplotlib.pyplot as plt
 import os, timeit, time
+from hybridsort import get_comparision_quantity_hybridsort
 from insertionsort import insertionsort, get_comparision_quantity_insertionsort
 from bubblesort import bubblesort, get_comparision_quantity_bubblesort
 from quicksort import quicksort, get_comparision_quantity_quicksort
@@ -55,7 +56,7 @@ def calcular_tempo_hibrido_timeit(lista, caso):
     for i in range (0, 3):
         tempo_hybridsort += timeit.timeit("hybridsort({})".format(lista), setup="from __main__ import hybridsort", number=1)
     tempo_hybridsort /= 3
-    arquivo.write("Hybridsort " + caso + ": "  + str(float(tempo_hybridsort)) + "; comparacoes: " + str(get_comparision_quantity_bubblesort() + get_comparision_quantity_quicksort()) + '\n')
+    arquivo.write("Hybridsort " + caso + ": "  + str(float(tempo_hybridsort)) + "; comparacoes: " + str(get_comparision_quantity_hybridsort()) + '\n')
     print('hybrid done.')
 
     arquivo.close()
@@ -89,7 +90,7 @@ def calcular_tempo_timeit(lista, caso):
     # calculando o BubbleSort()
     tempo_BubbleSort = 0
     for i in range (0, 3):
-        tempo_BubbleSort = timeit.timeit("bubblesort({})".format(lista), setup="from __main__ import bubblesort", number=1)
+        tempo_BubbleSort = timeit.timeit("bubblesort({}, {})".format(lista, "main"), setup="from __main__ import bubblesort", number=1)
     tempo_BubbleSort /= 3
     arquivo.write("BubbleSort " + caso + ": "  + str(float(tempo_BubbleSort)) + "; comparacoes: " + str(get_comparision_quantity_bubblesort()) + '\n')
     arquivo1.write(str(float(tempo_BubbleSort))+'\n')
