@@ -7,7 +7,7 @@ def gerar_grafico(y_axis_crescente, y_axis_decrescente, y_axis_random, tamanho):
     x_axis_crescente = range(len(y_axis_crescente))
     x_axis_decrescente = range(len(y_axis_decrescente))
     x_axis_random = range(len(y_axis_random))
-    algoritmos = ['insertion', 'bubble', 'quick', 'heap', 'merge']
+    algoritmos = ['insertion', 'bubble', 'quick', 'heap', 'merge', 'hybrid']
 
     plt.plot(x_axis_crescente, y_axis_crescente, label="Crescente")
     plt.plot(x_axis_decrescente, y_axis_decrescente, label="Decrescente")
@@ -30,18 +30,46 @@ def gerar_grafico(y_axis_crescente, y_axis_decrescente, y_axis_random, tamanho):
     plt.close()
     # plt.show()
 
-def gerar_grafico_comparacoes(y_axis_crescente, y_axis_decrescente, y_axis_random, tamanho):
-
+def gerar_grafico_hibrido(y_axis_crescente, y_axis_decrescente, y_axis_random):
+    ''''''
+    
     x_axis_crescente = range(len(y_axis_crescente))
     x_axis_decrescente = range(len(y_axis_decrescente))
     x_axis_random = range(len(y_axis_random))
-    algoritmos = ['insertion', 'bubble', 'quick', 'heap', 'merge']
+    algoritmos = ['100', '500', '1000', '5000', '30000', '50000', '100000', '150000', '200000']
 
     plt.plot(x_axis_crescente, y_axis_crescente, label="Crescente")
     plt.plot(x_axis_decrescente, y_axis_decrescente, label="Decrescente")
     plt.plot(x_axis_random, y_axis_random, label="Aleatório")
     plt.legend()
-    algoritmos = ['insertion', 'bubble', 'quick', 'heap', 'merge']
+
+    plt.ylabel('Tempo(s)')
+    plt.xlabel('Algoritmos')
+
+    plt.xticks(x_axis_crescente, algoritmos, rotation='vertical')
+    plt.xticks(x_axis_decrescente, algoritmos, rotation='vertical')
+    plt.xticks(x_axis_random, algoritmos, rotation='vertical')
+
+    plt.title('Caso '+'de tipo '+'hibrido')
+    plt.tight_layout()
+    plt.grid(True)
+
+    plt.savefig(os.getcwd()+'/_plot2/tempos-'+"teste"+'.png')
+    print('>>> figura ', "teste", '.png salva!')
+    plt.close()
+    # plt.show()
+
+def gerar_grafico_comparacoes(y_axis_crescente, y_axis_decrescente, y_axis_random, tamanho):
+
+    x_axis_crescente = range(len(y_axis_crescente))
+    x_axis_decrescente = range(len(y_axis_decrescente))
+    x_axis_random = range(len(y_axis_random))
+    algoritmos = ['insertion', 'bubble', 'quick', 'heap', 'merge', 'hybrid']
+
+    plt.plot(x_axis_crescente, y_axis_crescente, label="Crescente")
+    plt.plot(x_axis_decrescente, y_axis_decrescente, label="Decrescente")
+    plt.plot(x_axis_random, y_axis_random, label="Aleatório")
+    plt.legend()
 
     plt.ylabel('Comparações')
     plt.xlabel('Algoritmos')
@@ -66,6 +94,10 @@ def get_valores_pro_grafico(tam, valor_tipo):
         arquivo_crescente = open(os.getcwd()+'/timeIt/temposApenasNum'+"crescente"+str(tam)+'.txt', 'r')
         arquivo_decrescente = open(os.getcwd()+'/timeIt/temposApenasNum'+"decrescente"+str(tam)+'.txt', 'r')
         arquivo_random = open(os.getcwd()+'/timeIt/temposApenasNum'+"random"+str(tam)+'.txt', 'r')
+    elif valor_tipo == "hibrido":
+        arquivo_crescente = open(os.getcwd()+'/timeIt/temposHibrido'+"crescente"+'.txt', 'r')
+        arquivo_decrescente = open(os.getcwd()+'/timeIt/temposHibrido'+"decrescente"+'.txt', 'r')
+        arquivo_random = open(os.getcwd()+'/timeIt/temposHibrido'+"random"+'.txt', 'r')
     else:
         arquivo_crescente = open(os.getcwd()+'/comparisons/comparacoesApenasNum'+"crescente"+str(tam)+'.txt', 'r')
         arquivo_decrescente = open(os.getcwd()+'/comparisons/comparacoesApenasNum'+"decrescente"+str(tam)+'.txt', 'r')
@@ -82,12 +114,14 @@ def get_valores_pro_grafico(tam, valor_tipo):
         quick = 0
         heap = 0
         merge = 0
+        hybrid = 0
         tmp = ''
         v1 = True
         v2 = False
         v3 = False
         v4 = False
         v5 = False
+        v6 = False
         for j in range(len(valores)):
 
             if valores[j] == '\n':
@@ -114,14 +148,21 @@ def get_valores_pro_grafico(tam, valor_tipo):
                 elif merge == 0 and v5:
                     merge = tmp
                     tmp = ''
+                    v5 = False
+                    v6 = True
+                elif hybrid == 0 and v6:
+                    hybrid = tmp
+                    tmp = ''
+
             else:
                 tmp += valores[j]
-        print('insertion = ', insertion, ' bubble = ', bubble, 'quick = ', quick, ' heap = ', heap, ' merge = ', merge)
-        valores_por_tipo.append([float(insertion), float(bubble), float(quick), float(heap), float(merge)])
-
+        print('insertion = ', insertion, ' bubble = ', bubble, 'quick = ', quick, ' heap = ', heap, ' merge = ', merge, 'hybrid =', hybrid)
+        valores_por_tipo.append([float(insertion), float(bubble), float(quick), float(heap), float(merge), float(hybrid)])
         
     if valor_tipo == "tempo":
         gerar_grafico(valores_por_tipo[0],valores_por_tipo[1],valores_por_tipo[2], tamanho=tam)
+    elif valor_tipo == "hibrido":
+        gerar_grafico_hibrido(valores_por_tipo[0],valores_por_tipo[1],valores_por_tipo[2])
     else:
         gerar_grafico_comparacoes(valores_por_tipo[0],valores_por_tipo[1],valores_por_tipo[2], tamanho=tam)
 
@@ -134,14 +175,16 @@ if __name__ == "__main__":
     # get_valores_pro_grafico(50000, "tempo")
     # get_valores_pro_grafico(100000, "tempo")
     # get_valores_pro_grafico(150000, "tempo")
-    get_valores_pro_grafico(200000, "tempo")
+    # get_valores_pro_grafico(200000, "tempo")
 
-    get_valores_pro_grafico(100, "comparacoes")
-    get_valores_pro_grafico(500, "comparacoes")
+    # get_valores_pro_grafico(100, "comparacoes")
+    # get_valores_pro_grafico(500, "comparacoes")
     get_valores_pro_grafico(1000, "comparacoes")
-    get_valores_pro_grafico(5000, "comparacoes")
-    get_valores_pro_grafico(30000, "comparacoes")
+    # get_valores_pro_grafico(5000, "comparacoes")
+    # get_valores_pro_grafico(30000, "comparacoes")
     get_valores_pro_grafico(50000, "comparacoes")
-    get_valores_pro_grafico(100000, "comparacoes")
-    get_valores_pro_grafico(150000, "comparacoes")
+    # get_valores_pro_grafico(100000, "comparacoes")
+    # get_valores_pro_grafico(150000, "comparacoes")
     get_valores_pro_grafico(200000, "comparacoes")
+
+    # get_valores_pro_grafico(100, "hibrido")
