@@ -9,14 +9,15 @@ def add_comparision_quantity():
 def get_comparision_quantity_mergesort():
     return comparison_quantity_merge
 
-def mergesort(A, p, u):
+def mergesort(A, p, u, primeira_execucao):
     global comparison_quantity_merge
-    comparison_quantity_merge = 0
+    if primeira_execucao:
+        comparison_quantity_merge = 0
     add_comparision_quantity()
     if p < u: 
         q = (p + u)//2
-        mergesort(A, p, q)
-        mergesort(A, q + 1, u)
+        mergesort(A, p, q, False)
+        mergesort(A, q + 1, u, False)
         merge(A, p, q, u)
     return A
 
@@ -53,4 +54,4 @@ def merge(A, p, q, u):
     add_comparision_quantity()
 
 # vetor = [5, 8, 3, 6, 9, 0, 2, 4, 1, 7, 10] #Caso para teste de ordenacao
-# print(mergesort(vetor, 0, len(vetor) - 1))
+# print(mergesort(vetor, 0, len(vetor) - 1, True))

@@ -1,1 +1,1 @@
-BubbleSort random: 0.0006912999997439329; comparacoes: 15
+bubblesort random: 14720.849900833337; comparacoes: 79848800001

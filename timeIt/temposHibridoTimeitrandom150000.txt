@@ -1,1 +1,1 @@
-Hybridsort random: 0.6726888999999877; comparacoes: 15240363
+Hybridsort random: 0.7315839666650087; comparacoes: 5068076

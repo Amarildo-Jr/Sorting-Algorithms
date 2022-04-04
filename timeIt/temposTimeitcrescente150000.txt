@@ -1,0 +1,5 @@
+InsertionSort crescente: 0.0483329666700835; comparacoes: 47085846903
+BubbleSort crescente: 0.01784596666887713; comparacoes: 295123206669
+HeapSort crescente: 0.6151752333341088; comparacoes: 128419098
+QuickSort crescente: 0.1308366999971137; comparacoes: 64810059
+MergeSort crescente: 0.4264094000003145; comparacoes: 139872468

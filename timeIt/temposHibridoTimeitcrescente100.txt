@@ -1,1 +1,1 @@
-Hybridsort crescente: 2.3166666323959362e-05; comparacoes: 201
+Hybridsort crescente: 4.9499999780285485e-05; comparacoes: 201

@@ -41,6 +41,27 @@ def vendo_listas(lista_int,lista_m, lista_p):
     print('lista ja ordenada = ', lista_m, ' tam = ', len(lista_m))
     print('lista ordenada inversamente = ', lista_p, ' tam = ', len(lista_p))
 
+
+def calcular_tempo_bubble_timeit(lista, caso):
+    '''calcular tempo de execucao'''
+
+    operacao = 'w'
+
+    name_file = os.getcwd() +'/timeIt/' + "temposBubbleTimeit" + caso + str(len(lista)) +'.txt'
+
+    arquivo = open(name_file, operacao)
+
+    #calculando o bubblesort()
+    print('>>> calculando bubblesort em caso ', caso)
+    tempo_bubblesort = 0
+    for i in range (0, 3):
+        tempo_bubblesort += timeit.timeit("bubblesort({}, {})".format(lista, "main"), setup="from __main__ import bubblesort", number=1)
+    tempo_bubblesort /= 3
+    arquivo.write("bubblesort " + caso + ": "  + str(float(tempo_bubblesort)) + "; comparacoes: " + str(get_comparision_quantity_bubblesort()) + '\n')
+    print('bubble done.')
+
+    arquivo.close()
+
 def calcular_tempo_hibrido_timeit(lista, caso):
     '''calcular tempo de execucao'''
 
@@ -112,7 +133,7 @@ def calcular_tempo_timeit(lista, caso):
     print('>>> calculando quick em caso ', caso)
     tempo_QuickSort = 0
     for i in range (0, 3):
-        tempo_QuickSort = timeit.timeit("quicksort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import quicksort", number=1)
+        tempo_QuickSort = timeit.timeit("quicksort({}, {}, {}, {})".format(lista, 0, len(lista) - 1, True), setup="from __main__ import quicksort", number=1)
     tempo_QuickSort /= 3
     arquivo.write("QuickSort " + caso + ": "  + str(float(tempo_QuickSort)) + "; comparacoes: " + str(get_comparision_quantity_quicksort()) + '\n')
     arquivo1.write(str(float(tempo_QuickSort))+'\n')
@@ -123,7 +144,7 @@ def calcular_tempo_timeit(lista, caso):
     print('>>> calculando merge em caso ', caso)
     tempo_MergeSort = 0
     for i in range (0, 3):
-        tempo_MergeSort = timeit.timeit("mergesort({}, {}, {})".format(lista, 0, len(lista) - 1), setup="from __main__ import mergesort", number=1)
+        tempo_MergeSort = timeit.timeit("mergesort({}, {}, {}, {})".format(lista, 0, len(lista) - 1, True), setup="from __main__ import mergesort", number=1)
     tempo_MergeSort /= 3
     arquivo.write("MergeSort " + caso + ": " + str(float(tempo_MergeSort))+ "; comparacoes: " + str(get_comparision_quantity_mergesort()) + '\n')
     arquivo1.write(str(float(tempo_MergeSort))+'\n')

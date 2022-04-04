@@ -1,0 +1,1 @@
+Hybridsort crescente: 0.00025926666785380803; comparacoes: 2001

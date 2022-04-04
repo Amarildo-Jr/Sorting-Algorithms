@@ -92,13 +92,13 @@ while option:
         main.vendo_listas
         main.vendo_listas(lista, listam, listap)
     elif option == 6:
-            if lista == [] or listam == [] or listap == []:
-                print("\n--> Defina o tamanho de uma entrada antes de executar os algoritmos.")
-            else:
-                main.calcular_tempo_hibrido_timeit(lista, var_random)
-                main.calcular_tempo_hibrido_timeit(listam, var_crescente)
-                main.calcular_tempo_hibrido_timeit(listap, var_decrescente)
-                algoritmos_executados = True
+        if lista == [] or listam == [] or listap == []:
+            print("\n--> Defina o tamanho de uma entrada antes de executar os algoritmos.")
+        else:
+            main.calcular_tempo_hibrido_timeit(lista, var_random)
+            main.calcular_tempo_hibrido_timeit(listam, var_crescente)
+            main.calcular_tempo_hibrido_timeit(listap, var_decrescente)
+            algoritmos_executados = True
     else:
         if option != 0:
             print("\n--> Digite uma opcao valida.")

@@ -1,1 +1,1 @@
-BubbleSort crescente: 0.019297833333439485; comparacoes: 400001
+bubblesort crescente: 0.07046040000083546; comparacoes: 400001

@@ -1,7 +1,6 @@
 comparison_quantity_bubble = 0
 ordened = True
 
-
 def add_comparision_quantity():
     global comparison_quantity_bubble
     comparison_quantity_bubble += 1

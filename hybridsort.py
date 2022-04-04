@@ -1,13 +1,9 @@
 from quicksort import quicksort, get_comparision_quantity_quicksort
 from bubblesort import bubblesort, get_comparision_quantity_bubblesort
-from gerar_numeros import gerar_numeros 
-import timeit
-import main
 
 comparison_quantity_hybrid = 0
 
 def get_comparision_quantity_hybridsort():
-    print("hybrid comp: ", id(comparison_quantity_hybrid))
     return comparison_quantity_hybrid
 
 def hybridsort(vetor):
@@ -18,6 +14,6 @@ def hybridsort(vetor):
         comparison_quantity_hybrid = get_comparision_quantity_bubblesort()
         return vetor
 
-    vetorOrdenado = quicksort(vetor, 0, len(vetor) - 1)
+    vetorOrdenado = quicksort(vetor, 0, len(vetor) - 1, True)
     comparison_quantity_hybrid += get_comparision_quantity_quicksort()
     return vetorOrdenado

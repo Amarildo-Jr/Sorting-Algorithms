@@ -5,12 +5,12 @@ def add_comparision_quantity():
     comparison_quantity_quicksort += 1
 
 def get_comparision_quantity_quicksort():
-    print("quick comp: ", id(comparison_quantity_quicksort))
     return comparison_quantity_quicksort
 
-def quicksort(A, p, u):
+def quicksort(A, p, u, primeira_execucao):
     global comparison_quantity_quicksort
-    comparison_quantity_quicksort = 0
+    if primeira_execucao:
+        comparison_quantity_quicksort = 0
     i = p
     j = u
     x = A[(p + u)//2]
@@ -39,13 +39,13 @@ def quicksort(A, p, u):
 
     add_comparision_quantity()
     if p < j:
-        quicksort(A, p, j)
+        quicksort(A, p, j, False)
     
     add_comparision_quantity()
     if u > i:
-        quicksort(A, i, u)
+        quicksort(A, i, u, False)
         
     return A
 
 # vetor = [5, 8, 3, 6, 9, 0, 2, 4, 1, 7, 10] #Caso para teste de ordenacao
-# print(quicksort(vetor, 0, len(vetor) - 1))
+# print(quicksort(vetor, 0, len(vetor) - 1, True))

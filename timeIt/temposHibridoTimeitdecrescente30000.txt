@@ -1,0 +1,1 @@
+Hybridsort decrescente: 0.07270896666644451; comparacoes: 578200
